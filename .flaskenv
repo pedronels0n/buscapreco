@@ -1,2 +1,1 @@
 FLASK_APP=buscapreco.py
-FLASK_ENV=development
