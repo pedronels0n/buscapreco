@@ -1,0 +1,20 @@
+nav {
+    background-color: #f0f0f0; /* Cor de fundo cinza */
+    padding: 10px 20px; /* Espaçamento interno */
+    border-radius: 8px; /* Borda arredondada */
+    display: inline-block; /* Mostrar como bloco inline */
+}
+
+nav a {
+    color: #333; /* Cor do texto */
+    text-decoration: none; /* Sem sublinhado no link */
+    margin: 0 10px; /* Margem entre os links */
+    padding: 8px 12px; /* Espaçamento interno dos links */
+    transition: all 0.3s ease; /* Transição suave */
+}
+
+nav a:hover {
+    background-color: #3498db; /* Cor de fundo azul ao passar o mouse */
+    color: #fff; /* Cor do texto branco ao passar o mouse */
+    border-radius: 4px; /* Borda arredondada ao passar o mouse */
+}

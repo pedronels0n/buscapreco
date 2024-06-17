@@ -1,0 +1,12 @@
+{% extends 'base.html'%}
+{% block conteudo %}
+    <form action="/buscar" method="GET">
+        <label for="codigo_barras">Digite o código de barras:</label><br>
+        <input type="text" id="codigo_barras" name="codigo_barras" value="{{codigo_barras}}"><br><br>
+        <input type="submit" value="Buscar">
+    </form>
+    <h2>Seu produto:</h2>
+    <p>Codigo: {{codigo_barras}} <br>
+    Descricao: {{descricao}} </p>
+    <img src="{{foto}}" alt="FOTO">
+{% endblock conteudo %}
