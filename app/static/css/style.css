@@ -1,20 +1,104 @@
-nav {
-    background-color: #f0f0f0; /* Cor de fundo cinza */
-    padding: 10px 20px; /* Espaçamento interno */
-    border-radius: 8px; /* Borda arredondada */
-    display: inline-block; /* Mostrar como bloco inline */
-}
-
-nav a {
-    color: #333; /* Cor do texto */
-    text-decoration: none; /* Sem sublinhado no link */
-    margin: 0 10px; /* Margem entre os links */
-    padding: 8px 12px; /* Espaçamento interno dos links */
-    transition: all 0.3s ease; /* Transição suave */
-}
-
-nav a:hover {
-    background-color: #3498db; /* Cor de fundo azul ao passar o mouse */
-    color: #fff; /* Cor do texto branco ao passar o mouse */
-    border-radius: 4px; /* Borda arredondada ao passar o mouse */
-}
+/* Reset básico para garantir consistência entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Estilo do corpo */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+  }
+  
+  /* Estilo do contêiner */
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: auto; /* Centraliza o contêiner horizontalmente */
+    margin-top: 20px; /* Espaço acima do contêiner */
+  }
+  
+  /* Estilo do nav */
+  nav {
+    background-color: #007bff;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 18px;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Estilo do formulário */
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo dos rótulos */
+  label {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* Estilo dos campos de entrada */
+  input[type="text"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Estilo do botão */
+  input[type="submit"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilo dos resultados */
+  h2 {
+    margin-top: 20px;
+    font-size: 24px;
+  }
+  
+  p {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  img {
+    margin-top: 20px;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
