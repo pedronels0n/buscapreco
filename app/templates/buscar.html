@@ -1,12 +1,22 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
+
 {% block conteudo %}
-    <form action="/buscar" method="GET">
-        <label for="codigo_barras">Digite o código de barras:</label><br>
-        <input type="text" id="codigo_barras" name="codigo_barras" value="{{codigo_barras}}"><br><br>
-        <input type="submit" value="Buscar">
+    <h2>Informacoes do Produto:</h2>
+    <p>Código: {{ codigo_barras }} <br>
+       Descrição: {{ descricao }} </p>
+    
+       <br>
+
+    <form action="/salvar_precos" method="POST">
+        <label for="preco_unitario">Preço Unitário (R$):</label>
+        <input type="text" id="preco_unitario" name="preco_unitario" value="{{ preco_unitario }}" required autofocus><br><br>
+        
+        <label for="preco_atacado">Preço Atacado (R$):</label>
+        <input type="text" id="preco_atacado" name="preco_atacado" value="{{ preco_atacado }}" required autofocus><br><br>
+        
+        <input type="hidden" id="codigo_barras_hidden" name="codigo_barras_hidden" value="{{ codigo_barras }}">
+        <input type="hidden" id="descricao" name="descricao" value="{{ descricao }}">
+        
+        <input type="submit" value="Salvar Preços">
     </form>
-    <h2>Seu produto:</h2>
-    <p>Codigo: {{codigo_barras}} <br>
-    Descricao: {{descricao}} </p>
-    <img src="{{foto}}" alt="FOTO">
-{% endblock conteudo %} 
+{% endblock conteudo %}

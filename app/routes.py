@@ -19,7 +19,7 @@ def contato():
 
 
 #Rota BUSCAR - Pagina Secundaria
-@app.route('/buscar')
+@app.route('/buscar', methods=['GET'])
 #Criando funcao para receber o codigo enviado via GET
 #da pagina Index.html
 def buscador():
@@ -43,3 +43,18 @@ def buscador():
     foto = data['thumbnail']
 
     return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras, foto=foto)
+
+@app.route('/salvar_precos', methods=['POST'])
+def salvar_preco():
+    #Capturando dos dados do formulario
+    codigo_barras = request.form.get('codigo_barras_hidden')
+    preco_unitario = float(request.form.get('preco_unitario').replace(',', '.'))
+    preco_atacado = float(request.form.get('preco_atacado').replace(',', '.'))
+    descricao = request.form.get('descricao')
+
+
+    print(f'Descricao:{descricao}')
+    print(f'Codigo:{codigo_barras}')
+    print(f'Unidade:{preco_unitario}')
+    print(f'Atacado:{preco_atacado}')
+    return render_template('index.html')
