@@ -1,104 +1,119 @@
-/* Reset básico para garantir consistência entre navegadores */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  /* Reset básico para garantir consistência entre navegadores */
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    /* Estilo do corpo */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      color: #333;
+      padding: 20px;
+      margin: 0;
+    }
+    
+    /* Estilo do contêiner */
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      margin: auto; /* Centraliza o contêiner horizontalmente */
+      margin-top: 20px; /* Espaço acima do contêiner */
+    }
+    
+    /* Estilo do nav */
+    nav {
+      background-color: #007bff;
+      padding: 10px 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      text-align: center;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 18px;
+    }
+    
+    nav a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Estilo do formulário */
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+    
+    /* Estilo dos rótulos */
+    label {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    /* Estilo dos campos de entrada */
+    input[type="text"] {
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    
+    /* Estilo do botão */
+    input[type="submit"] {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    
+    /* Estilo dos resultados */
+    h2 {
+      margin-top: 20px;
+      font-size: 24px;
+    }
+    
+    p {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+    
+    img {
+      margin-top: 20px;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .produto-info {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ccc;
   }
   
-  /* Estilo do corpo */
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    color: #333;
-    padding: 20px;
-    margin: 0;
+  .produto-info h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
   }
   
-  /* Estilo do contêiner */
-  .container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    margin: auto; /* Centraliza o contêiner horizontalmente */
-    margin-top: 20px; /* Espaço acima do contêiner */
+  .produto-info p {
+      margin-bottom: 8px;
+      font-size: 16px;
+      line-height: 1.6;
   }
-  
-  /* Estilo do nav */
-  nav {
-    background-color: #007bff;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-    font-size: 18px;
-  }
-  
-  nav a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Estilo do formulário */
-  form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-  }
-  
-  /* Estilo dos rótulos */
-  label {
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  /* Estilo dos campos de entrada */
-  input[type="text"] {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  /* Estilo do botão */
-  input[type="submit"] {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Estilo dos resultados */
-  h2 {
-    margin-top: 20px;
-    font-size: 24px;
-  }
-  
-  p {
-    margin-top: 10px;
-    font-size: 18px;
-  }
-  
-  img {
-    margin-top: 20px;
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  

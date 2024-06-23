@@ -73,5 +73,24 @@ def consultar_produto_por_codigo_barra():
                 complemento = produto.find('complemento').text
                 
                 return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barra, codig_interno=codig_interno, complemento=complemento)
+            else:
+                codigo_barras = request.args.get('codigo_barras')
     
+                #API para Codigo de Barras
+                #Configuracao de API da Cosmos
+                headers = {
+                    'X-Cosmos-Token': 'WN0U_hsymg5d1x8_7XKwDQ',
+                    'Content-Type': 'application/json',
+                    'User-Agent': 'Cosmos-API-Request'
+                }
+
+                req      = urllib.request.Request(f'https://api.cosmos.bluesoft.com.br/gtins/{codigo_barras}.json', None, headers)
+                response = urllib.request.urlopen(req)
+                data     = json.loads(response.read().decode('utf-8'))
+                #Filtrando as informacoes Essenciais
+                #para retonar ao Cliente
+                descricao = data['description']
+                foto = data['thumbnail']
+
+                return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras)
     return None

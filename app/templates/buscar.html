@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 
 {% block conteudo %}
-    <h2>Informacoes do Produto:</h2>
+<div class="produto-info">
+    <h2>Informações do Produto:</h2>
     <p>SKU: {{ codig_interno }}</p>
     <p>Barcode: {{ codigo_barras }}</p>
     <p>Descrição: {{ descricao }}</p>
     <p>Complemento: {{ complemento }}</p>
+</div>
 
     <form action="/salvar_precos" method="POST">
         <label for="preco_unitario">Preço Unitário (R$):</label>
