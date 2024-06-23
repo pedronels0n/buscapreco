@@ -2,10 +2,10 @@
 
 {% block conteudo %}
     <h2>Informacoes do Produto:</h2>
-    <p>Código: {{ codigo_barras }} <br>
-       Descrição: {{ descricao }} </p>
-    
-       <br>
+    <p>SKU: {{ codig_interno }}</p>
+    <p>Barcode: {{ codigo_barras }}</p>
+    <p>Descrição: {{ descricao }}</p>
+    <p>Complemento: {{ complemento }}</p>
 
     <form action="/salvar_precos" method="POST">
         <label for="preco_unitario">Preço Unitário (R$):</label>
