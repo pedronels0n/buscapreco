@@ -10,14 +10,19 @@
 </div>
 
     <form action="/salvar_precos" method="POST">
+        
+        <input type="hidden" id="codigo_barras_hidden" name="codigo_barras_hidden" value="{{ codigo_barras }}">
+        <input type="hidden" id="descricao" name="descricao" value="{{ descricao }}">
+        <input type="hidden" name="codigo_interno" id="codigo_interno" value="{{ codigo_interno }}">
+        <input type="hidden" id="complemento" name="complemento" value="{{ complemento }}">
+
+        
+        
         <label for="preco_unitario">Preço Unitário (R$):</label>
         <input type="text" id="preco_unitario" name="preco_unitario" value="{{ preco_unitario }}" required autofocus autocomplete="off"><br><br>
         
         <label for="preco_atacado">Preço Atacado (R$):</label>
         <input type="text" id="preco_atacado" name="preco_atacado" value="{{ preco_atacado }}" required autofocus autocomplete="off"><br><br>
-        
-        <input type="hidden" id="codigo_barras_hidden" name="codigo_barras_hidden" value="{{ codigo_barras }}">
-        <input type="hidden" id="descricao" name="descricao" value="{{ descricao }}">
         
         <input type="submit" value="Salvar Preços">
     </form>
