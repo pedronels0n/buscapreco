@@ -3,6 +3,7 @@ from flask import render_template, request
 import json
 import urllib.request
 import xml.etree.ElementTree as ET
+from .database import add_produto
 
 #Rota INDEX - Pagina Principal 
 @app.route('/')
@@ -34,6 +35,8 @@ def salvar_preco():
     preco_atacado = float(request.form.get('preco_atacado').replace(',', '.'))
     descricao = str(request.form.get('descricao'))
 
+    add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado)
+
 
     print(f'Descricao:{descricao}')
     print(f'SKU:{codigo_interno}')
@@ -49,37 +52,20 @@ def salvar_preco():
 def consultar_produto_por_codigo_barra():
     #Utilizamos um arquivo xml como fonte de dados
     #para obter informacoes essenciais do produto
-    codigo_barra = request.args.get('codigo_barras')
-    tree = ET.parse('produtos.xml')
-    xml_root = tree.getroot()
-    for produto in xml_root.findall('produto'):
-        for embalagem in produto.findall('embalagem'):
-            if embalagem.find('codigo_barras').text == codigo_barra:
-                codig_interno = produto.get('sku')
-                descricao = produto.find('descricao').text
-                complemento = produto.find('complemento').text
-                
-                return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barra, codigo_interno=codig_interno, complemento=complemento)
-            #Caso nao contenha no arquivo
-            #criamos uma contigencia utilizando 
-            #uma api da cosmos para buscar a descricao do produto
-            else:
-                codigo_barras = request.args.get('codigo_barras')
-    
-                #API para Codigo de Barras
-                #Configuracao de API da Cosmos
-                headers = {
-                    'X-Cosmos-Token': 'WN0U_hsymg5d1x8_7XKwDQ',
-                    'Content-Type': 'application/json',
-                    'User-Agent': 'Cosmos-API-Request'
-                }
+    codigo_barras = request.args.get('codigo_barras')
+    #API para Codigo de Barras
+    #Configuracao de API da Cosmos
+    headers ={
+        'X-Cosmos-Token': 'WN0U_hsymg5d1x8_7XKwDQ',
+        'Content-Type': 'application/json',
+        'User-Agent': 'Cosmos-API-Request'
+        }
 
-                req      = urllib.request.Request(f'https://api.cosmos.bluesoft.com.br/gtins/{codigo_barras}.json', None, headers)
-                response = urllib.request.urlopen(req)
-                data     = json.loads(response.read().decode('utf-8'))
-                #Filtrando as informacoes Essenciais
-                #para retonar ao Cliente
-                descricao = data['description']
+    req      = urllib.request.Request(f'https://api.cosmos.bluesoft.com.br/gtins/{codigo_barras}.json', None, headers)
+    response = urllib.request.urlopen(req)
+    data     = json.loads(response.read().decode('utf-8'))
+    #Filtrando as informacoes Essenciais
+    #para retonar ao Cliente
+    descricao = data['description']
 
-                return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras)
-    return None
+    return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras)
