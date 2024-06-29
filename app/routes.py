@@ -3,7 +3,7 @@ from flask import render_template, request
 import json
 import urllib.request
 import xml.etree.ElementTree as ET
-from .database import add_produto
+from .database import add_produto, consulta_produto
 
 #Rota INDEX - Pagina Principal 
 @app.route('/')
@@ -53,6 +53,15 @@ def consultar_produto_por_codigo_barra():
     #Utilizamos um arquivo xml como fonte de dados
     #para obter informacoes essenciais do produto
     codigo_barras = request.args.get('codigo_barras')
+    
+    produto = consulta_produto(codigo_barras)
+    if produto:
+        codigo_barras = produto[0]
+        codigo_interno = produto[1]
+        descricao = produto[2]
+        complemento = produto[3]
+        return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras, codig_interno=codigo_interno , complemento=complemento)
+    
     #API para Codigo de Barras
     #Configuracao de API da Cosmos
     headers ={

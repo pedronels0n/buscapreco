@@ -7,18 +7,33 @@ def inicializar_db():
 
 # Verificar se o arquivo existe
     if os.path.exists(db_file):
-        print(f'O banco de dados {db_file} existe.')
-    else:
         banco = sqlite3.connect('banco.db')
         cursor = banco.cursor()
+        print(f'O banco de dados {db_file} existe.')
         cursor.execute("""
-                       CREATE TABLE produtos (
+                       CREATE TABLE IF NOT EXISTS pesquisa (
                        codigo INTEGER PRIMARY KEY,
                        sku INTEGER,
                        descricao TEXT,
                        complemento TEXT,
                        preco_unitario REAL,
                        preco_atacado REAL
+                       )
+                       """)
+        banco.commit()
+        cursor.close()
+        banco.close()
+        
+        
+    else:
+        banco = sqlite3.connect('banco.db')
+        cursor = banco.cursor()
+        cursor.execute("""
+                       CREATE TABLE IF NOT EXISTS produtos (
+                       codigo INTEGER PRIMARY KEY,
+                       sku INTEGER,
+                       descricao TEXT,
+                       complemento TEXT
                        )
                        """)
         
@@ -50,11 +65,12 @@ def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_uni
         cursor.execute("""
                 UPDATE pesquisa
                 SET descricao = ?,
+                    sku = ?,
                     complemento = ?,
                     preco_unitario = ?,
                     preco_atacado = ?
                 WHERE codigo = ?
-            """, (descricao, complemento, preco_unitario, preco_atacado, codigo_barras))
+            """, (descricao, codigo_interno, complemento, preco_unitario, preco_atacado, codigo_barras))
             
             # Confirmar a transação de atualização
         banco.commit()
@@ -70,3 +86,15 @@ def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_uni
     #ENCERRANDO CONEXOES
     cursor.close()
     banco.close()
+
+
+def consulta_produto(codigo_barras):
+        banco = sqlite3.connect('banco.db')
+        cursor = banco.cursor()
+
+        cursor.execute("SELECT * FROM produtos WHERE codigo_barras = ?", (codigo_barras,))
+        produto = cursor.fetchone()  # Recupera o primeiro (e único) registro
+        cursor.close()
+        banco.close()
+
+        return produto
