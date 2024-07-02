@@ -57,7 +57,7 @@ def inicializar_db():
         print(f'o Banco de dados foi criado: {db_file}')
 
 
-def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado):
+def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado, data, pricing):
     banco = sqlite3.connect('banco.db')
     cursor = banco.cursor()
 
@@ -72,9 +72,11 @@ def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_uni
                     sku = ?,
                     complemento = ?,
                     preco_unitario = ?,
-                    preco_atacado = ?
+                    preco_atacado = ?,
+                    data = ?
+                    princing = ?
                 WHERE codigo = ?
-            """, (descricao, codigo_interno, complemento, preco_unitario, preco_atacado, codigo_barras))
+            """, (descricao, codigo_interno, complemento, preco_unitario, preco_atacado, data, pricing, codigo_barras))
             
             # Confirmar a transação de atualização
         banco.commit()
@@ -83,8 +85,8 @@ def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_uni
     else:
         cursor.execute("""
                        INSERT INTO pesquisa (codigo, sku, descricao, complemento, preco_unitario, preco_atacado)
-                       VALUES (?, ?, ?, ?, ?, ?)
-                       """, (codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado))
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                       """, (codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado, data, pricing))
         banco.commit()
         print(f"Produto: {codigo_barras}, inserido com sucesso.") 
     #ENCERRANDO CONEXOES
