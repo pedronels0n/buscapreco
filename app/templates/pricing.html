@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+  <body>
+    <div class="container">
+      <h1>Escolha o Supermercado</h1>
+      <form action="/processar_escolha" method="post">
+        <div class="supermercado">
+          <div class="supermercado-item">
+            <label>
+              <input type="radio" name="supermercado" value="assai">
+              <img src="https://seeklogo.com/images/A/assai-atacadista-logo-91322E0F6F-seeklogo.com.png" alt="assai">
+              <p>Assai</p>
+            </label>
+          </div>
+          <div class="supermercado-item">
+            <label>
+              <input type="radio" name="supermercado" value="atakarejo">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt7McMtPy3EWqTXJ3q1u4pD5BJgiVPpV4XnA&s" alt="ATAKAREJO">
+              <p>Atakarejo</p>
+            </label>
+          </div>
+        </div>
+        <input type="submit" value="Selecionar">
+      </form>
+    </div>
+  </body>
+
+  {% endblock conteudo %}

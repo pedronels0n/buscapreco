@@ -4,6 +4,7 @@ import json
 import urllib.request
 import xml.etree.ElementTree as ET
 from .database import add_produto, consulta_produto, obter_produtos
+from datetime import date
 
 #Rota INDEX - Pagina Principal 
 @app.route('/')
@@ -34,8 +35,9 @@ def salvar_preco():
     preco_unitario = float(request.form.get('preco_unitario').replace(',', '.'))
     preco_atacado = float(request.form.get('preco_atacado').replace(',', '.'))
     descricao = str(request.form.get('descricao'))
+    data = date.today()
 
-    add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado)
+    add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado, data)
 
 
     print(f'Descricao:{descricao}')
@@ -44,6 +46,7 @@ def salvar_preco():
     print(f'Codigo:{codigo_barras}')
     print(f'Unidade:{preco_unitario}')
     print(f'Atacado:{preco_atacado}')
+    print(f'Na data: {data}')
     return render_template('index.html')
 
 
@@ -78,6 +81,15 @@ def consultar_produto_por_codigo_barra():
     descricao = data['description']
 
     return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras)
+
+
+
+
+@app.route('/pricing')
+@app.route('/pricing.html')
+def mercado():
+    return render_template('pricing.html')
+#Lista de produtos inseridos no baanco
 
 @app.route('/produtos')
 def listar_produtos():

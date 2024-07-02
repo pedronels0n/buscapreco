@@ -146,3 +146,36 @@ table th {
 table tr:hover {
   background-color: #f2f2f2; /* Cor de fundo cinza claro ao passar o mouse */
 }
+
+.supermercado {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Espaço entre os supermercados */
+}
+
+.supermercado-item {
+  text-align: center;
+  flex: 1 1 300px; /* Cresce, encolhe, base 300px */
+}
+
+.supermercado-item a {
+  display: block; /* Transforma o link em bloco para ocupar o espaço completo */
+}
+
+.supermercado-item img {
+  width: 100%; /* Imagem ocupa toda a largura do seu contêiner */
+  max-width: 100%; /* Imagem não ultrapassa o tamanho máximo do contêiner */
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius: 8px; /* Borda arredondada */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: transform 0.3s ease; /* Transição suave ao passar o mouse */
+}
+
+.supermercado-item img:hover {
+  transform: scale(1.1); /* Efeito de escala ao passar o mouse */
+}
+
+.supermercado-item p {
+  font-size: 18px;
+  margin-top: 10px;
+}
