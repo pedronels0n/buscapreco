@@ -117,3 +117,32 @@
       font-size: 16px;
       line-height: 1.6;
   }
+
+  /* Estilo da tabela */
+/* Estilo da tabela */
+/* Estilo da tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff; /* Fundo da tabela branco */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-radius: 8px;
+  margin-bottom: 20px; /* Espaço abaixo da tabela */
+}
+
+table th, table td {
+  padding: 12px 15px; /* Espaçamento interno dos cabeçalhos e células */
+  text-align: left;
+  border-bottom: 1px solid #ddd; /* Linha divisória cinza claro */
+}
+
+table th {
+  background-color: #007bff; /* Cor de fundo azul */
+  color: #fff; /* Texto branco */
+  font-weight: bold;
+  text-transform: uppercase; /* Transforma o texto em maiúsculas */
+}
+
+table tr:hover {
+  background-color: #f2f2f2; /* Cor de fundo cinza claro ao passar o mouse */
+}

@@ -3,7 +3,7 @@ from flask import render_template, request
 import json
 import urllib.request
 import xml.etree.ElementTree as ET
-from .database import add_produto, consulta_produto
+from .database import add_produto, consulta_produto, obter_produtos
 
 #Rota INDEX - Pagina Principal 
 @app.route('/')
@@ -78,3 +78,13 @@ def consultar_produto_por_codigo_barra():
     descricao = data['description']
 
     return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras)
+
+@app.route('/produtos')
+def listar_produtos():
+    produtos = obter_produtos()
+
+    if produtos:
+        return render_template('produtos.html', produtos=produtos)
+    else:
+        return "Nenhum produto encontrado."
+

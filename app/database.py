@@ -17,7 +17,9 @@ def inicializar_db():
                        descricao TEXT,
                        complemento TEXT,
                        preco_unitario REAL,
-                       preco_atacado REAL
+                       preco_atacado REAL,
+                       pricing TEXT,
+                       data TEXT
                        )
                        """)
         banco.commit()
@@ -44,7 +46,9 @@ def inicializar_db():
                        descricao TEXT,
                        complemento TEXT,
                        preco_unitario REAL,
-                       preco_atacado REAL
+                       preco_atacado REAL,
+                       pricing TEXT,
+                       data TEXT
                        )
                        """)
         
@@ -98,3 +102,12 @@ def consulta_produto(codigo_barras):
         banco.close()
 
         return produto
+
+def obter_produtos():
+    conn = sqlite3.connect('banco.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM pesquisa")
+    produtos = cursor.fetchall()  # Recupera todos os registros
+    cursor.close()
+    conn.close()
+    return produtos

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<body class="body2">
+    <h1>Lista de Produtos</h1>
+    <table class="container2" border="1">
+        <tr>
+            <th>Código de Barras</th>
+            <th>Código Interno</th>
+            <th>Descrição</th>
+            <th>Complemento</th>
+            <th>Preço Unitário</th>
+            <th>Preço Atacado</th>
+        </tr>
+        {% for produto in produtos %}
+        <tr>
+            <td>{{ produto[0] }}</td> <!-- Código de Barras -->
+            <td>{{ produto[1] }}</td> <!-- Código Interno -->
+            <td>{{ produto[2] }}</td> <!-- Descrição -->
+            <td>{{ produto[3] }}</td> <!-- Complemento -->
+            <td>{{ produto[4] }}</td> <!-- Preço Unitário -->
+            <td>{{ produto[5] }}</td> <!-- Preço Atacado -->
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+{% endblock conteudo %}
