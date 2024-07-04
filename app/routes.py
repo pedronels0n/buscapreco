@@ -7,10 +7,11 @@ from .database import add_produto, consulta_produto, obter_produtos
 from datetime import date
 
 #Rota INDEX - Pagina Principal 
-@app.route('/')
+@app.route('/',  methods=['POST'])
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    mercado = request.form.get('supermercado')
+    return render_template('index.html', mercado=mercado)
 
 
 
@@ -35,9 +36,10 @@ def salvar_preco():
     preco_unitario = float(request.form.get('preco_unitario').replace(',', '.'))
     preco_atacado = float(request.form.get('preco_atacado').replace(',', '.'))
     descricao = str(request.form.get('descricao'))
+    mercado = str(request.form.get('mercado'))
     data = date.today()
 
-    add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado, data)
+    add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado, data, mercado)
 
 
     print(f'Descricao:{descricao}')
@@ -47,7 +49,8 @@ def salvar_preco():
     print(f'Unidade:{preco_unitario}')
     print(f'Atacado:{preco_atacado}')
     print(f'Na data: {data}')
-    return render_template('index.html')
+    print(f'Mercado:{mercado}')
+    return render_template('index.html', mercado=mercado)
 
 
 #Rota para buscar o codigo de barras fornecido
@@ -56,14 +59,14 @@ def consultar_produto_por_codigo_barra():
     #Utilizamos um arquivo xml como fonte de dados
     #para obter informacoes essenciais do produto
     codigo_barras = request.args.get('codigo_barras')
-    
+    mercado = request.args.get('mercado')
     produto = consulta_produto(codigo_barras)
     if produto:
         codigo_barras = produto[0]
         codigo_interno = produto[1]
         descricao = produto[2]
         complemento = produto[3]
-        return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras, codig_interno=codigo_interno , complemento=complemento)
+        return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras, codig_interno=codigo_interno , complemento=complemento, mercado=mercado)
     
     #API para Codigo de Barras
     #Configuracao de API da Cosmos
@@ -80,7 +83,7 @@ def consultar_produto_por_codigo_barra():
     #para retonar ao Cliente
     descricao = data['description']
 
-    return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras)
+    return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras, mercado=mercado)
 
 
 
