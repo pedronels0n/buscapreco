@@ -66,8 +66,8 @@ def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_uni
     resultado = cursor.fetchone()
     # Verifica se o resultado é maior que zero (ou seja, já existe um produto com esse código)
     if resultado:
-        cursor.execute("""
-                UPDATE pesquisa
+        cursor.execute(f"""
+                UPDATE {pricing}
                 SET descricao = ?,
                     sku = ?,
                     complemento = ?,
@@ -83,10 +83,10 @@ def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_uni
         print(f"Já existe um produto com código de barras {codigo_barras}.")
         print(f"Dados do produto com código {codigo_barras} atualizados com sucesso.")
     else:
-        cursor.execute("""
-                       INSERT INTO pesquisa (codigo, sku, descricao, complemento, preco_unitario, preco_atacado, data, pricing)
+        cursor.execute(f"""
+                       INSERT INTO {pricing} (codigo, sku, descricao, complemento, preco_unitario, preco_atacado, data, pricing)
                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                       """, (codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado, data, pricing))
+                       """, (codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado, pricing, data))
         banco.commit()
         print(f"Produto: {codigo_barras}, inserido com sucesso.") 
     #ENCERRANDO CONEXOES

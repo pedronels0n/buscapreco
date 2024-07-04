@@ -10,6 +10,8 @@
             <th>Complemento</th>
             <th>Preço Unitário</th>
             <th>Preço Atacado</th>
+            <th>Data</th>
+            <th>Mercado</th>
         </tr>
         {% for produto in produtos %}
         <tr>
@@ -19,6 +21,8 @@
             <td>{{ produto[3] }}</td> <!-- Complemento -->
             <td>{{ produto[4] }}</td> <!-- Preço Unitário -->
             <td>{{ produto[5] }}</td> <!-- Preço Atacado -->
+            <td>{{ produto[6] }}</td> <!-- Data -->
+            <td>{{ produto[7] }}</td> <!-- Mercado -->
         </tr>
         {% endfor %}
     </table>
