@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<body>
+    <h1>Exportar para Excel</h1>
+    <p>Clique no botão abaixo para baixar os dados em Excel:</p>
+    <div>
+        <form action="/export_excel" method="POST">
+            <label for="mercado">Escolher Pesquisa</label>
+            <button type="submit" name="mercado" id="mercado" value="assai"> Assai </button>
+            <button type="submit" name="mercado" value="atakarejo" id="mercado">Atakarejo</button>
+        </form>
+    </div>
+</body>
+{% endblock conteudo %}

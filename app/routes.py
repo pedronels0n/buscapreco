@@ -1,10 +1,11 @@
 from app import app
-from flask import render_template, request
+from flask import render_template, request, send_file
 import json
 import urllib.request
 import xml.etree.ElementTree as ET
-from .database import add_produto, consulta_produto, obter_produtos
+from .database import *
 from datetime import date
+
 
 #Rota INDEX - Pagina Principal 
 @app.route('/')
@@ -105,4 +106,17 @@ def listar_produtos():
         return render_template('produtos.html', produtos=produtos)
     else:
         return "Nenhum produto encontrado."
+
+@app.route('/relatorio')
+def relatorios():
+    return render_template('relatorio.html')
+
+@app.route('/export_excel', methods=['POST'])
+def excel():
+    mercado = request.form.get('mercado')
+    pricing = obter_excel(mercado)
+    data = date.today()
+    return send_file(pricing, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', as_attachment=True, download_name=(f'Pesquisa {mercado}_{data}.xlsx'))
+
+
 

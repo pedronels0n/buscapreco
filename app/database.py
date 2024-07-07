@@ -1,6 +1,8 @@
 import os
 import sqlite3
-
+from datetime import date
+import pandas as pd
+from app import app
 
 def inicializar_db():
     db_file = 'banco.db'
@@ -73,8 +75,8 @@ def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_uni
                     complemento = ?,
                     preco_unitario = ?,
                     preco_atacado = ?,
-                    data = ?
-                    princing = ?
+                    data = ?,
+                    pricing = ?
                 WHERE codigo = ?
             """, (descricao, codigo_interno, complemento, preco_unitario, preco_atacado, data, pricing, codigo_barras))
             
@@ -84,7 +86,7 @@ def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_uni
         print(f"Dados do produto com código {codigo_barras} atualizados com sucesso.")
     else:
         cursor.execute(f"""
-                       INSERT INTO {pricing} (codigo, sku, descricao, complemento, preco_unitario, preco_atacado, data, pricing)
+                       INSERT INTO {pricing} (codigo, sku, descricao, complemento, preco_unitario, preco_atacado, data, pricing,
                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                        """, (codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado, pricing, data))
         banco.commit()
@@ -113,3 +115,25 @@ def obter_produtos():
     cursor.close()
     conn.close()
     return produtos
+
+
+def obter_excel(mercado):
+    EXPORTS_DIR = os.path.join(app.root_path, 'exports')
+    
+    if not os.path.exists(EXPORTS_DIR):
+        os.makedirs(EXPORTS_DIR)
+     
+    banco = sqlite3.connect('banco.db')
+    df = pd.read_sql_query(f'SELECT * FROM {mercado}', banco)
+    
+    data = date.today()
+    os.path.join(EXPORTS_DIR, f'Pesquisa_{mercado}_{data}.xlsx')
+    excel_file = os.path.join(EXPORTS_DIR, f'Pesquisa_{mercado}_{data}.xlsx')
+    df.to_excel(excel_file, index=False, engine='openpyxl')
+    banco.close()
+    return excel_file
+
+    
+
+
+
