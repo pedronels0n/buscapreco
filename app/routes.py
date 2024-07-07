@@ -7,8 +7,11 @@ from .database import add_produto, consulta_produto, obter_produtos
 from datetime import date
 
 #Rota INDEX - Pagina Principal 
-@app.route('/',  methods=['POST'])
-@app.route('/index')
+@app.route('/')
+def pricing():
+    return render_template('pricing.html')
+
+@app.route('/index',  methods=['POST'])
 def index():
     mercado = request.form.get('supermercado')
     return render_template('index.html', mercado=mercado)
@@ -45,7 +48,7 @@ def salvar_preco():
     print(f'Descricao:{descricao}')
     print(f'SKU:{codigo_interno}')
     print(f'Complemento: {complemento}')
-    print(f'Codigo:{codigo_barras}')
+    print(f'Codigo:{codigo_barras}') 
     print(f'Unidade:{preco_unitario}')
     print(f'Atacado:{preco_atacado}')
     print(f'Na data: {data}')
