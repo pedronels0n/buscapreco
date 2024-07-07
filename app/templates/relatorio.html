@@ -3,11 +3,27 @@
 <body>
     <h1>Exportar para Excel</h1>
     <p>Clique no botão abaixo para baixar os dados em Excel:</p>
-    <div>
+    <div class="container">
         <form action="/export_excel" method="POST">
             <label for="mercado">Escolher Pesquisa</label>
-            <button type="submit" name="mercado" id="mercado" value="assai"> Assai </button>
-            <button type="submit" name="mercado" value="atakarejo" id="mercado">Atakarejo</button>
+            <button type="submit" name="mercado" id="mercado" value="assai" style="
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;"> Assai </button>
+            <br>
+            <br>
+            <button type="submit" name="mercado" value="atakarejo" id="mercado" style="
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;">Atakarejo</button>
         </form>
     </div>
 </body>
