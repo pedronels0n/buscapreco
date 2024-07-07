@@ -86,7 +86,7 @@ def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_uni
         print(f"Dados do produto com código {codigo_barras} atualizados com sucesso.")
     else:
         cursor.execute(f"""
-                       INSERT INTO {pricing} (codigo, sku, descricao, complemento, preco_unitario, preco_atacado, data, pricing,
+                       INSERT INTO {pricing} (codigo, sku, descricao, complemento, preco_unitario, preco_atacado, data, pricing)
                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                        """, (codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado, pricing, data))
         banco.commit()
