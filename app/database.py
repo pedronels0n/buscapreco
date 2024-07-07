@@ -133,6 +133,15 @@ def obter_excel(mercado):
     banco.close()
     return excel_file
 
+def limpar_dados(nome_tabela):
+    banco = sqlite3.connect('banco.db')
+    cursor = banco.cursor()
+    cursor.execute(f'DELETE FROM {nome_tabela}')
+    banco.commit()
+    cursor.close()
+    banco.close()
+
+
     
 
 

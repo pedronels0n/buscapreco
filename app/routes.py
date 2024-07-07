@@ -118,5 +118,9 @@ def excel():
     data = date.today()
     return send_file(pricing, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', as_attachment=True, download_name=(f'Pesquisa {mercado}_{data}.xlsx'))
 
+@app.route('/limpar/<nome_tabela>')
+def limpar_tabela(nome_tabela):
+    limpar_dados(nome_tabela)
+    return f'Tabela {nome_tabela} limpa'
 
 
