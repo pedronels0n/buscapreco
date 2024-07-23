@@ -64,10 +64,10 @@ def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_uni
     cursor = banco.cursor()
 
     # Consulta para contar o número de registros com o mesmo código de barras
-    cursor.execute("SELECT 1 FROM pesquisa WHERE codigo = ?", (codigo_barras,))
+    cursor.execute(f"SELECT * FROM {pricing} WHERE codigo = ?", (codigo_barras,))
     resultado = cursor.fetchone()
     # Verifica se o resultado é maior que zero (ou seja, já existe um produto com esse código)
-    if resultado:
+    if resultado is not None:
         cursor.execute(f"""
                 UPDATE {pricing}
                 SET descricao = ?,
@@ -88,7 +88,7 @@ def add_produto(codigo_barras, codigo_interno, descricao, complemento, preco_uni
         cursor.execute(f"""
                        INSERT INTO {pricing} (codigo, sku, descricao, complemento, preco_unitario, preco_atacado, data, pricing)
                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-                       """, (codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado, pricing, data))
+                       """, (codigo_barras, codigo_interno, descricao, complemento, preco_unitario, preco_atacado, data, pricing))
         banco.commit()
         print(f"Produto: {codigo_barras}, inserido com sucesso.") 
     #ENCERRANDO CONEXOES
@@ -105,6 +105,19 @@ def consulta_produto(codigo_barras):
         cursor.close()
         banco.close()
 
+        return produto
+
+def consulta_ultimo_preco(tabela, codigo_barras):
+    banco = sqlite3.connect('banco.db')
+    cursor = banco.cursor()
+    cursor.execute(f"SELECT * FROM {tabela} WHERE {codigo_barras}")
+    produto = cursor.fetchone()
+    cursor.close()
+    banco.close()
+    if produto:
+        return produto
+    else:
+        produto = [0, 0, 0, 0, 0, 0]
         return produto
 
 def obter_produtos():

@@ -70,7 +70,10 @@ def consultar_produto_por_codigo_barra():
         codigo_interno = produto[1]
         descricao = produto[2]
         complemento = produto[3]
-        return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras, codig_interno=codigo_interno , complemento=complemento, mercado=mercado)
+        preco = consulta_ultimo_preco(mercado, codigo_barras)
+        preco_unitario = preco[4]
+        preco_atacado = preco[5]
+        return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras, codig_interno=codigo_interno , complemento=complemento, mercado=mercado, preco_unitario=preco_unitario, preco_atacado=preco_atacado)
     
     #API para Codigo de Barras
     #Configuracao de API da Cosmos
