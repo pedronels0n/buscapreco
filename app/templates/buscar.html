@@ -11,7 +11,7 @@
 
     <form action="/salvar_precos" method="POST">
         
-        <input type="hidden" id="codigo_barras_hidden" name="codigo_barras_hidden" value="{{ codigo_barras }}">
+        <input type="hidden" id="codigo_barras_hidden" name="codigo_barras_hidden" value="{{ codigo_barras }}" autocomplete="off">
         <input type="hidden" id="descricao" name="descricao" value="{{ descricao }}">
         <input type="hidden" name="codigo_interno" id="codigo_interno" value="{{ codig_interno }}">
         <input type="hidden" id="complemento" name="complemento" value="{{ complemento }}">

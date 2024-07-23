@@ -65,12 +65,12 @@ def consultar_produto_por_codigo_barra():
     codigo_barras = request.args.get('codigo_barras')
     mercado = request.args.get('mercado')
     produto = consulta_produto(codigo_barras)
+    preco = consulta_ultimo_preco(mercado, codigo_barras)
     if produto:
         codigo_barras = produto[0]
         codigo_interno = produto[1]
         descricao = produto[2]
         complemento = produto[3]
-        preco = consulta_ultimo_preco(mercado, codigo_barras)
         preco_unitario = preco[4]
         preco_atacado = preco[5]
         return render_template('buscar.html', descricao=descricao, codigo_barras=codigo_barras, codig_interno=codigo_interno , complemento=complemento, mercado=mercado, preco_unitario=preco_unitario, preco_atacado=preco_atacado)

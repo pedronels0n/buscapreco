@@ -110,11 +110,12 @@ def consulta_produto(codigo_barras):
 def consulta_ultimo_preco(tabela, codigo_barras):
     banco = sqlite3.connect('banco.db')
     cursor = banco.cursor()
-    cursor.execute(f"SELECT * FROM {tabela} WHERE {codigo_barras}")
+    cursor.execute(f"SELECT * FROM {tabela} WHERE codigo = {codigo_barras}")
     produto = cursor.fetchone()
     cursor.close()
     banco.close()
-    if produto:
+    if produto is not None:
+        print(produto[4], produto[5])
         return produto
     else:
         produto = [0, 0, 0, 0, 0, 0]
