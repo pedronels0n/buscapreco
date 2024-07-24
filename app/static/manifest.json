@@ -1,0 +1,18 @@
+{
+    "name": "BuscaPreço",
+    "short_name": "BuscaPreço",
+    "description": "Aplicativo de pesquisa de preços para encontrar as melhores ofertas.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4caf50",
+    "icons": [
+
+      {
+        "src": "/static/icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
